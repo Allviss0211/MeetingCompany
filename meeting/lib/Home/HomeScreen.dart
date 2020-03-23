@@ -67,8 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () async {
                           await loadFromAsset(index < 3 ? listFile[index] : listFile[index % 3]);
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  InfoScreen(document: document)));
+                            builder: (context) => InfoWebViewScreen(url: "https://viblo.asia/p/flutter-su-dung-webviews-Az45brNz5xY",)
+                          ));
                         },
                         child: Card(
                           shape: RoundedRectangleBorder(
