@@ -12,6 +12,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> listFile = [
+    "DeLy",
+    "DeToan",
+    "Eric_Windmill_Flutter_in_Action",
+  ];
   List<String> listDemo = List.generate(10, (index) => "Event thu $index");
   String assetPDFPath = '';
   String urlPDFPath = '';
@@ -60,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 100,
                       child: GestureDetector(
                         onTap: () async {
-                          await loadFromAsset();
+                          await loadFromAsset(index < 3 ? listFile[index] : listFile[index % 3]);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) =>
                                   InfoScreen(document: document)));
@@ -104,13 +109,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 
-  loadFromAsset() async {
+  void loadFromAsset(String name) async {
     setState(() {
       _isLoading = true;
     });
-
-    document = await PDFDocument.fromAsset("assets/DeLy.pdf");
-
+    document = await PDFDocument.fromAsset("assets/$name.pdf");
     setState(() {
       _isLoading = false;
     });
